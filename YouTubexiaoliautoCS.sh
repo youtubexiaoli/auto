@@ -1,5 +1,8 @@
 ﻿#!/bin/bash
 
+# 处理 BOM 和 Windows 换行符
+sed -i 's/\r//;s/^\xef\xbb\xbf//' "$0"
+
 # 显示菜单并提示输入
 echo "请选择要执行的操作:"
 echo "1. 安装证书"
