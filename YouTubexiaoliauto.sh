@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# 检查参数
-if [ "$1" == "install_cert" ]; then
-    # 安装证书
+# 显示菜单并提示输入
+echo "请选择要执行的操作:"
+echo "1. 安装证书"
+echo "2. 安装 3x-ui 面板"
+read -p "请输入数字 1 或 2: " choice
+
+# 根据用户输入执行相应的操作
+if [ "$choice" == "1" ]; then
+    echo "正在安装证书..."
     git clone https://github.com/slobys/SSL-Renewal.git /tmp/acme && mv /tmp/acme/* /root && bash /root/acme_2.0.sh
-elif [ "$1" == "install_3x_ui" ]; then
-    # 安装 3x-ui 面板
+elif [ "$choice" == "2" ]; then
+    echo "正在安装 3x-ui 面板..."
     bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
 else
-    echo "使用方法："
-    echo "  $0 install_cert    安装证书"
-    echo "  $0 install_3x_ui   安装 3x-ui 面板"
+    echo "无效的选择，请输入 1 或 2."
     exit 1
 fi
